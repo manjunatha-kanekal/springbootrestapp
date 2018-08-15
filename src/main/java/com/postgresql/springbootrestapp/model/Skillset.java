@@ -9,7 +9,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "skillset")
+@Table(name = "skillset", indexes = {
+        @Index(name = "ss_id_index", columnList="id"),
+        @Index(name = "ss_emp_index", columnList = "emp_code"),
+        @Index(name = "ss_skill_rating_index", columnList = "skill,rating")
+})
 public class Skillset extends Audit {
     @Id
     @GeneratedValue(generator = "skill_gen")

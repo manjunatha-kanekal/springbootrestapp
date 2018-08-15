@@ -11,7 +11,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "employee", indexes = {
+        @Index(name = "emp_code_index", columnList="emp_code"),
+        @Index(name = "emp_dept_index", columnList = "department_id")
+})
 public class Employee extends Audit {
 
     @Id
@@ -56,7 +59,6 @@ public class Employee extends Audit {
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "department_id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonManagedReference
     private Department department;
 
     @NotBlank

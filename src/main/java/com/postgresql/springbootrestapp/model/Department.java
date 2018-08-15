@@ -1,12 +1,10 @@
 package com.postgresql.springbootrestapp.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 @Entity
 @Table(name = "department")
@@ -26,10 +24,6 @@ public class Department extends Audit {
     @Column(name = "dept_name")
     private String departmentName;
 
-    @OneToMany(mappedBy = "department")
-    @JsonBackReference
-    private List<Employee> employees;
-
     public Long getId() {
         return id;
     }
@@ -46,11 +40,4 @@ public class Department extends Audit {
         this.departmentName = departmentName;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
 }

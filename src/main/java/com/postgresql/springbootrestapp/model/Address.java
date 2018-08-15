@@ -10,7 +10,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "address")
+@Table(name = "address", indexes = {
+        @Index(name = "addr_id_index", columnList="id"),
+        @Index(name = "addr_emp_index", columnList = "emp_code")
+})
 public class Address extends Audit {
     @Id
     @GeneratedValue(generator = "address_gen")
